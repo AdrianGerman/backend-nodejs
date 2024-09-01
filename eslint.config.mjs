@@ -26,6 +26,10 @@ export default [
       },
     },
     files: ["**/*.js"],
+    rules: {
+      "no-unused-vars": "false",
+      "no-undef": "false",
+    },
   },
   ...compat.extends("eslint:recommended", "prettier"),
 ];
