@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const routerApi = require('./routes/index');
 const app = express();
 const port = 3000;
@@ -10,6 +11,18 @@ const {
 } = require('./middlewares/error.handler');
 
 app.use(express.json());
+
+const whitelist = ['http://localhost:8080'];
+const options = {
+  origin: (origin, callback) => {
+    if (whitelist.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('hoho this api does not use for you'));
+    }
+  },
+};
+app.use(cors(options));
 
 app.get('/', (req, res) => {
   res.send('Hola desde mi server en express');
