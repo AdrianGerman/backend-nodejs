@@ -2,8 +2,6 @@ const boom = require('@hapi/boom');
 
 const { models } = require('../libs/sequelize');
 
-const getConnection = require('../libs/postgres');
-
 class UserService {
   constructor() {}
   async create(data) {
