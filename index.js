@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const routerApi = require('./routes/index');
+const { checkApiKey } = require('./middlewares/auth.handler');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -29,7 +30,7 @@ app.get('/', (req, res) => {
   res.send('Hola desde mi server en express');
 });
 
-app.get('/nueva-ruta', (req, res) => {
+app.get('/nueva-ruta', checkApiKey, (req, res) => {
   res.send('Hola, soy una nueva ruta');
 });
 
